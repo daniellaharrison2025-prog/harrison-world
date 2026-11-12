@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harrison World 1.0</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ color:white;
+ background:radial-gradient(ellipse at top,#43216f,#10091e 70%);
+ min-height:100vh;
+}
+header{
+ text-align:center;
+ padding:45px 15px 20px;
+}
+h1{
+ font-size:clamp(32px,7vw,60px);
+ margin:10px 0;
+ color:#f5eaff;
+ text-shadow:0 0 24px #a65cff;
+}
+.subtitle{color:#70f3e5;font-size:18px}
+.tag{letter-spacing:3px;color:#c9a7ff;font-size:12px}
+.worlds{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:22px;
+ max-width:1150px;
+ margin:30px auto;
+ padding:15px;
+}
+.portal{
+ border:1px solid #a76cf7;
+ border-radius:22px;
+ padding:30px 20px;
+ text-align:center;
+ background:linear-gradient(145deg,#352052,#181128);
+ box-shadow:0 0 22px #7131a444;
+ transition:transform .3s,box-shadow .3s;
+}
+.portal:hover{
+ transform:translateY(-6px);
+ box-shadow:0 0 35px #a659ff88;
+}
+.symbol{font-size:54px;margin-bottom:14px}
+.portal h2{font-size:22px}
+.portal p{color:#d2c7e0;min-height:55px;line-height:1.5}
+button{
+ background:linear-gradient(90deg,#9c4dff,#28cfc5);
+ border:0;
+ border-radius:25px;
+ padding:12px 23px;
+ color:white;
+ font-weight:bold;
+ cursor:pointer;
+}
+button:hover{filter:brightness(1.2)}
+#destination{
+ display:none;
+ max-width:760px;
+ margin:20px auto 50px;
+ padding:30px;
+ border:1px solid #68e5dc;
+ border-radius:22px;
+ background:#211534;
+ text-align:center;
+}
+#destination h2{color:#80f5e8}
+#destination p{line-height:1.7}
+footer{
+ text-align:center;
+ padding:30px;
+ color:#b5a4c9;
+ font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="tag">HARRISON CHARACTERS & ROBOTICS</div>
+<h1>🌎 Harrison World</h1>
+<div class="subtitle">Your Universe. Your Imagination. Your Legacy.</div>
+<p>Welcome to your virtual world headquarters.</p>
+</header>
+
+<main>
+<section class="worlds">
+
+<article class="portal">
+<div class="symbol">👩‍💼</div>
+<h2>McKenna's Executive World</h2>
+<p>Luxury offices, artificial intelligence, and your virtual chief of staff.</p>
+<button onclick="enter('McKenna')">Enter Portal</button>
+</article>
+
+<article class="portal">
+<div class="symbol">🌈🐾</div>
+<h2>Demon's Rainbow Garden</h2>
+<p>A peaceful memorial garden, with Demon's favorite window and Miss Lyle.</p>
+<button onclick="enter('Demon')">Enter Portal</button>
+</article>
+
+<article class="portal">
+<div class="symbol">🐎</div>
+<h2>Harrison Western World</h2>
+<p>Beautiful ranches, horses, country homes, and Western adventures.</p>
+<button onclick="enter('Western')">Enter Portal</button>
+</article>
+
+<article class="portal">
+<div class="symbol">❤️</div>
+<h2>Harrison Family World</h2>
+<p>A special place for family memories, homes, and treasured moments.</p>
+<button onclick="enter('Family')">Enter Portal</button>
+</article>
+
+<article class="portal">
+<div class="symbol">🏙️</div>
+<h2>Harrison Future City</h2>
+<p>Robotics, futuristic buildings, technology, and new inventions.</p>
+<button onclick="enter('Future')">Enter Portal</button>
+</article>
+
+</section>
+
+<section id="destination" aria-live="polite">
+<h2 id="destinationTitle"></h2>
+<p id="destinationText"></p>
+<button onclick="closePortal()">Return to Portal Hub</button>
+</section>
+</main>
+
+<footer>
+Harrison World 1.0 | Harrison Characters & Robotics
+</footer>
+
+<script>
+const places={
+ McKenna:{
+  title:"Welcome to McKenna's Executive World",
+  text:"McKenna's luxury virtual headquarters is ready for its next development stage. Her interactive 3D office will be built here."
+ },
+ Demon:{
+  title:"Welcome to Demon's Rainbow Garden 🌈",
+  text:"A place to remember Demon, his favorite outdoor resting spot, and the window where Miss Lyle watched him. The interactive garden is coming next."
+ },
+ Western:{
+  title:"Welcome to Harrison Western World",
+  text:"Your future virtual ranch, horses, Western homes, and country adventures will live here."
+ },
+ Family:{
+  title:"Welcome to Harrison Family World",
+  text:"A peaceful virtual place for the family memories you choose to preserve."
+ },
+ Future:{
+  title:"Welcome to Harrison Future City",
+  text:"A world of robotics, technology, virtual laboratories, and futuristic inventions."
+ }
+};
+
+function enter(name){
+ const place=places[name];
+ if(!place)return;
+ document.getElementById("destinationTitle").textContent=place.title;
+ document.getElementById("destinationText").textContent=place.text;
+ const panel=document.getElementById("destination");
+ panel.style.display="block";
+ panel.scrollIntoView({behavior:"smooth"});
+}
+function closePortal(){
+ document.getElementById("destination").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
